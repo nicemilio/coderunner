@@ -1,114 +1,114 @@
-# C++ Programmierrichtlinien
-## 1. Motivation und Nutzen
+# C++ Programming Guidelines
+## 1. Motivation and Benefits
 
-* **Ziel:** Schaffung eines einheitlichen Stils in allen von Sander & Doll-Mitarbeitern erstellten C++-Quelltexten.
-* **Vorteile:**
-    * Vermeidung fehleranfälliger Konstrukte.
-    * Erleichterung des Verständnisses und der Bearbeitung von Code.
-    * Minimierung von Reibungsverlusten und Steigerung der Effizienz.
+* **Goal:** To establish a consistent style in all C++ source code created by Sander & Doll employees.
+* **Advantages:**
+    * Avoids error-prone constructs.
+    * Facilitates understanding and modification of existing code.
+    * Minimizes friction and increases efficiency.
 
-## 2. Anwendungsbereich
+## 2. Scope of Application
 
-* Gilt primär für **neu zu erstellenden Quelltext**.
-* Bei **bestehendem Quelltext**: Einzelfallentscheidung, aber langfristig einheitlicher Stil angestrebt.
-* **Wichtige Punkte für neuen Code:**
-    * Neue Klassenmitglieder müssen den neuen Regeln folgen.
-    * Überschreibende virtuelle Funktionen mit `override` kennzeichnen.
-    * Neue Funktionen, Typen und Variablen müssen immer einen Dokumentationskommentar erhalten.
-    * `NULL` ist durch `nullptr` zu ersetzen.
+* Primarily applies to **newly created source code**.
+* For **existing source code**: Decisions are made on a case-by-case basis, with a long-term goal of achieving a uniform style.
+* **Important points for new code:**
+    * New class members must follow the new rules.
+    * Overriding virtual functions must be marked with `override`.
+    * New functions, types, and variables must always include a documentation comment.
+    * The `NULL` macro is to be replaced by `nullptr`.
 
-## 3. Wesentliche Richtlinien
+## 3. Essential Guidelines
 
-### 3.1. Allgemein
+### 3.1. General
 
-* **Einrückung:** 4 Leerzeichen, keine Tabs.
-* **Zeilenlänge:** Max. 135 Zeichen (Ausnahmen möglich).
-* **Leerzeichen:** Vor öffnenden Klammern (`(`, `{`, `[`, `<`) ein Leerzeichen, innen keine.
-* **Operatoren:** Durch Leerzeichen von Operanden getrennt (Ausnahmen: `::`, `,`, `>`, `>>`, `++`, Komma-Operator).
-* Große auskommentierte Codeblöcke entfernen (Versionskontrolle nutzen).
+* **Indentation:** 4 spaces, no tabs.
+* **Line Length:** Max. 135 characters (exceptions possible).
+* **Whitespace:** One space before opening brackets (`(`, `{`, `[`, `<`), no spaces inside them.
+* **Operators:** Separated from operands by spaces (exceptions: `::`, `,`, `>`, `>>`, `++`, comma operator).
+* Large commented-out code blocks should be removed (use version control).
 
-### 3.2. Variablen
+### 3.2. Variables
 
-* **Namen:** `camelCase`, beginnend mit Kleinbuchstaben (z.B. `variableName`). Einwortige Variablen komplett kleingeschrieben (z.B. `count`).
-* Keine ungarische Notation.
-* Namen sollen aussagekräftig sein; Abkürzungen nur wenn offensichtlich oder kommentiert.
-* Pro Statement nur eine Variablendeklaration.
-* **Pointer/Referenzen:** Zeichen an Variablennamen gebunden (z.B. `int* pointerName`).
-* **`const`:** An den Typ gebunden, zwischen Typ und Pointer-/Referenzzeichen (z.B. `double const pi`).
-* **Initialisierung:** Bevorzugt mit Zuweisungs-Syntax (`=`).
-* **`auto`:** Mit Bedacht einsetzen, kann Lesbarkeit verbessern.
+* **Names:** `camelCase`, starting with a lowercase letter (e.g., `variableName`). Single-word variables are entirely lowercase (e.g., `count`).
+* No Hungarian notation.
+* Names should be descriptive; abbreviations only if obvious or commented.
+* Only one variable declaration per statement.
+* **Pointers/References:** Sign bound to the variable name (e.g., `int* pointerName`).
+* **`const`:** Bound to the type, between type and pointer/reference sign (e.g., `double const pi`).
+* **Initialization:** Preferred with assignment syntax (`=`).
+* **`auto`:** To be used judiciously; can improve readability.
 
 ### 3.3. Typedef
 
-* **`using`** wird **`typedef`** vorgezogen (bessere Lesbarkeit, Template-Unterstützung).
+* **`using`** is preferred over **`typedef`** (better readability, template support).
 
-### 3.4. Funktionen
+### 3.4. Functions
 
-* **Namen:** `CamelCase`, beginnend mit Großbuchstaben (z.B. `FunctionName`).
-* Globale Funktionen mit `::` Präfix kennzeichnen.
-* Meist imperativ (z.B. `Move`, `Close`).
-* **Parameterliste:** Öffnende Klammer durch Leerzeichen vom Funktionsnamen getrennt.
-* **Funktionsrumpf:** Öffnende geschweifte Klammer in neuer Zeile.
-* **Parameternamen:** Präfix `the` und dann `CamelCase` (z.B. `theParameter`).
-* Parameter, die nicht in eine Zeile passen, auf mehrere Zeilen aufteilen (ein Parameter pro Zeile, eingerückt).
-* Parameternamen müssen in Deklaration und Definition übereinstimmen (bei Unbenutzung auskommentieren, nicht entfernen).
-* **Übergabe von Typen:**
-    * Benutzerdefinierte Typen: Als Referenzen (ggf. `const`-Referenzen).
-    * Eingebaute Typen: Als Wert (niemals `const`-Referenzen).
-* Funktionen sollten eine gewisse Länge nicht überschreiten (Refactoring anstreben).
-* **`inline`:** Nur bei klarem Performance-Nutzen.
-* **C-Style Variadic Functions (`...`):** Verboten (Typunsicherheit); Alternativen wie C++-Streams oder `std::format` nutzen.
-* **Variadische Templates (C++11):** Erlaubt (Typsicherheit).
+* **Names:** `CamelCase`, starting with an uppercase letter (e.g., `FunctionName`).
+* Global functions should be explicitly prefixed with `::`.
+* Mostly imperative (e.g., `Move`, `Close`).
+* **Parameter List:** Opening parenthesis separated from function name by a space.
+* **Function Body:** Opening curly brace on a new line.
+* **Parameter Names:** Prefixed with `the` and then `CamelCase` (e.g., `theParameter`).
+* Parameters that don't fit on one line should be split across multiple lines (one parameter per line, indented).
+* Parameter names must match in declaration and definition (if unused, comment out the name, do not remove it).
+* **Type Passing:**
+    * User-defined types: Passed as references (optionally `const` references).
+    * Built-in types: Passed by value (never as `const` references).
+* Functions should not exceed a certain length (refactoring encouraged).
+* **`inline`:** Only use when clear performance benefit is evident.
+* **C-Style Variadic Functions (`...`):** Forbidden (type unsafety); alternatives like C++ streams or `std::format` should be used.
+* **Variadic Templates (C++11):** Allowed (type-safe).
 
-### 3.5. Kontrollstrukturen
+### 3.5. Control Structures
 
-* **`if`:** Leerzeichen nach `if`, keine Leerzeichen in Bedingungsparametern. Geschweifte Klammern optional bei einzelnen Anweisungen. `else` auf gleicher Zeile wie schließende Klammer. Explizite Vergleiche mit 0, `bool`-Ausdrücke direkt nutzen. Literale rechts in Vergleichen.
-* **`for`:** Leerzeichen nach `for`, keine Leerzeichen in Kontrollanweisungen. Präfix-Inkrement/Dekrement (`++i`, `--i`) bevorzugen.
-* **`while`:** Leerzeichen nach `while`, keine Leerzeichen in Bedingungsparametern.
-* **`do-while`:** Rumpf immer in geschweifte Klammern, `while` auf gleicher Zeile nach schließender Rumpfklammer.
-* **`switch`:** Leerzeichen nach `switch`, keine Leerzeichen in Ausdrucksparametern. `case`-Labels und Anweisungen eingerückt. `break` in neuer Zeile. Fall-through mit `[[fallthrough]]` (C++17) kennzeichnen. `default` immer als letzter Fall.
+* **`if`:** Space after `if`, no spaces inside condition parentheses. Curly braces optional for single statements. `else` follows on the same line as the preceding closing brace. Explicit comparisons to 0 required; `bool` expressions used directly. Literals on the right in comparisons.
+* **`for`:** Space after `for`, no spaces in control statements. Prefer prefix increment/decrement (`++i`, `--i`).
+* **`while`:** Space after `while`, no spaces inside condition parentheses.
+* **`do-while`:** Body always enclosed in curly braces, `while` follows on the same line as the closing brace of the body.
+* **`switch`:** Space after `switch`, no spaces inside expression parentheses. `case` labels and statements are indented. `break` on a new line. Fall-through must be marked with `[[fallthrough]]` (C++17). `default` is always the last case.
 
-### 3.6. Typumwandlung
+### 3.6. Type Casting
 
-* **Verboten:** C-Style und Function-Style Casts.
-* **Verwenden:** C++-Casts (`static_cast<>`, `const_cast<>`, `reinterpret_cast<>`, `dynamic_cast<>`).
-* **Spezial-Casts:** `pointer_cast<>` (für `dynamic_cast<>` von Pointern, die Exception werfen sollen), `implicit_cast<>` (für implizite Umwandlungen).
-* **`const_cast<>`:** Nur bei tatsächlich nicht-`const` Objekten oder defekten Schnittstellen.
-* **`reinterpret_cast`:** Nur als letztes Mittel.
+* **Forbidden:** C-style and function-style casts.
+* **Allowed:** C++ casts (`static_cast<>`, `const_cast<>`, `reinterpret_cast<>`, `dynamic_cast<>`).
+* **Special Casts:** `pointer_cast<>` (for `dynamic_cast<>` of pointers that should throw an exception on failure), `implicit_cast<>` (when a conversion would otherwise be implicit).
+* **`const_cast<>`:** Only allowed if the object is genuinely not `const` or when dealing with a defective interface.
+* **`reinterpret_cast`:** Only as a last resort.
 
 ### 3.7. `sizeof`
 
-* Ausdruck für `sizeof` immer in runde Klammern setzen.
-* Variablennamen statt Typ bei `sizeof` bevorzugen.
+* Expression for `sizeof` always enclosed in parentheses.
+* Prefer using the variable name over its type with `sizeof`.
 
-### 3.8. Namensräume
+### 3.8. Namespaces
 
-* **Namen:** Kleingeschrieben, kurz, einwortig (z.B. `tools`).
-* Inhalt nicht eingerückt.
-* Öffnende geschweifte Klammer auf gleicher Zeile wie Namensraumname.
-* Jedes Modul hat eigenen Namensraum.
-* `// namespace <Name>`-Kommentar hinter schließender Klammer.
-* Namensräume nur für Deklarationen und Klassendefinitionen öffnen.
-* Anonyme Namensräume für lokale Helferkonstrukte in Implementierungsdateien (max. einer pro Datei).
-* **In Headern verboten:** `using`-Deklarationen und `using namespace`-Direktiven.
-* **In Implementierungsdateien erlaubt:** `using`-Deklarationen und `using namespace`-Direktiven.
+* **Names:** Lowercase, short, single-word (e.g., `tools`).
+* Content not indented within namespace blocks.
+* Opening curly brace on the same line as the namespace name.
+* Each module has its own namespace.
+* `// namespace <Name>` comment after the closing brace.
+* Namespaces opened only for declarations and class definitions.
+* Anonymous namespaces for local helper constructs in implementation files (max. one per file).
+* **Forbidden in Headers:** `using` declarations and `using namespace` directives.
+* **Allowed in Implementation Files:** `using` declarations and `using namespace` directives.
 
-### 3.9. Enumerationen
+### 3.9. Enumerations
 
-* **Namen:** `CamelCase` mit `E`-Präfix (z.B. `EWindowsVersion`).
-* Öffnende geschweifte Klammer auf gleicher Zeile.
-* **Alte Enums:** Werte mit kleingeschriebener Abkürzung des Enum-Namens, dann `CamelCase`.
-* **Neue Enums (`enum class`):** Ohne Präfix, Großbuchstabe, dann `CamelCase`.
-* Neue Enums sind zu bevorzugen.
+* **Names:** `CamelCase` with an `E`-prefix (e.g., `EWindowsVersion`).
+* Opening curly brace on the same line.
+* **Old Enums:** Values with lowercase abbreviation of the enum name, then `CamelCase`.
+* **New Enums (`enum class`):** No prefix, uppercase letter, then `CamelCase`.
+* New enums are preferred.
 
-### 3.10. Klassen
+### 3.10. Classes
 
-* **Namen:** `CamelCase` mit `C`-Präfix (z.B. `CStyleGuide`), gilt auch für Strukturen.
-* **Ableitung:** Leerzeichen nach Klassennamen, Doppelpunkt, dann Ableitungsspezifikator (public, protected, private).
-* Öffnende geschweifte Klammer auf gleicher Zeile wie letzte Basisklasse oder Klassenname.
-* Maximal ein `public:`, `protected:`, `private:` Block in dieser Reihenfolge.
-* Sichtbarkeitsspezifizierer auf gleicher Einrücktiefe wie `class`, Deklarationen eingerückt.
-* **Reihenfolge der Deklarationen:** Standardkonstruktor, Kopierkonstruktor, andere Konstruktoren, Destruktor, (Leerzeile), Operatoren, (Leerzeile), Mitgliedsvariablen, Mitgliedsfunktionen.
-* Mitgliedsfunktionen alphabetisch sortiert.
-* Definition von Mitgliedsfunktionen innerhalb der Klassendefinition ist verboten.
-* Inline-Member-Funktionen werden unterhalb der Klasse im Header definiert.
+* **Names:** `CamelCase` with a `C`-prefix (e.g., `CStyleGuide`), also applies to structs.
+* **Inheritance List:** Space after class name, colon, then derivation specifier (public, protected, private).
+* Opening curly brace on the same line as the last base class or class name.
+* Maximum one `public:`, `protected:`, `private:` block in that order.
+* Visibility specifiers at the same indentation level as `class`, declarations indented further.
+* **Order of Declarations:** Standard constructor, Copy constructor, Other constructors, Destructor, (blank line), Operators, (blank line), Member variables, Member functions.
+* Member functions alphabetically sorted.
+* Definition of member functions within the class definition is forbidden.
+* Inline member functions are defined below the class in the header.
