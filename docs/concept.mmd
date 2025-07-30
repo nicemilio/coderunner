@@ -1,0 +1,51 @@
+graph LR
+    A[Code Racer]
+
+    A --> E[Key Features]
+
+    E --> E1[Competition Features]
+    E1 --> E1a[Real-time Matches]
+    E1 --> E1b[Live Progress Tracking]
+    E1 --> E1c[Interactive Code Editor]
+    E1 --> E1d[Problem Bank]
+    E1 --> E1e[Custom Test Cases]
+    E1 --> E1f[Real-time Leaderboards]
+    E1 --> E1g[Post-Match Analysis]
+
+    E --> E2[User and Social Features]
+    E2 --> E2a[User Profiles]
+    E2 --> E2b[Authentication and Authorization]
+    E2 --> E2c[Matchmaking System]
+    E2 --> E2f[Optional - Achievements and Badges]
+    E2 --> E2g[Global Leaderboards]
+
+    E --> E3[Admin and Content Features]
+    E3 --> E3a[Problem Management]
+    E3 --> E3b[Language Support Management]
+    E3 --> E3c[User Management]
+
+    A --> F[Technical Architecture]
+
+    F --> F1[Frontend]
+    F1 --> F1a[Svelte]
+    F1 --> F1b[Monaco Editor]
+    F1 --> F1c[State Management]
+    F1 --> F1d[WebSockets]
+    F1 --> F1e[UI Library: Tailwind or MUI]
+
+    F --> F2[Backend]
+    F2 --> F2a[FastAPI]
+    F2 --> F2b[PostgreSQL with SQLAlchemy]
+    F2 --> F2c[Redis for Caching]
+    F2 --> F2d[JWT Authentication]
+
+    F --> F3[Online Judging System]
+    F3 --> F3a[Isolated Microservice]
+    F3 --> F3b[Docker Sandbox per Submission]
+    F3 --> F3c[Message Queue: RabbitMQ or Kafka]
+    F3 --> F3d[Secure Execution & Feedback]
+
+    F --> F4[Infrastructure]
+    F4 --> F4a[Cloud: Azure/Nics Server]
+    F4 --> F4b[Orchestration: Docker]
+    F4 --> F4c[CI/CD: GitHub]
