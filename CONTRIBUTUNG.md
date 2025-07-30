@@ -8,7 +8,7 @@ Thanks for your interest in contributing to this project!<br> To keep things con
 ## Code guidelines
 
 In python, we are following the [PEP 8 guidelines.](https://peps.python.org/pep-0008/)<br>
-C++ guidelines can be viewed [here]().
+C++ guidelines can be viewed [here](/docs/cppGuidelines.md).
 ## Before You Submit
 - Make sure your code passes all tests
 - Write tests for new features or bugfixes
