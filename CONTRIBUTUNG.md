@@ -4,7 +4,7 @@ Thanks for your interest in contributing to this project!<br> To keep things con
 ## Getting Started
 1. Fork the repository
 2. Create a new branch: git checkout -b main/my-feature
-3. For a setup guide check, please follow the [development file](/docs/DEVELOPMENT.md.md).
+3. For a setup guide check, please follow the [development file](/docs/DEVELOPMENT.md).
 
 ## Code guidelines
 
