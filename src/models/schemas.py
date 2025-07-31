@@ -1,21 +1,21 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 
 
 class UserCreate(BaseModel):
-    username: str
+    username: str = Field(..., min_length=3, max_length=30, regex=r'^\w+$')
     email: EmailStr
     password: str
 
 
 class UserLogin(BaseModel):
-    username: str
+    username: str = Field(..., min_length=3, max_length=30, regex=r'^\w+$')
     password: str
 
 
 class UserResponse(BaseModel):
     id: int
-    username: str
+    username: str = Field(..., min_length=3, max_length=30, regex=r'^\w+$')
     email: str
     created_at: datetime
     
