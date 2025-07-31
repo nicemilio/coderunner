@@ -4,6 +4,7 @@ Thanks for your interest in contributing to this project!<br> To keep things con
 ## Getting Started
 1. Fork the repository
 2. Create a new branch: git checkout -b main/my-feature
+3. Setup a Postgresql database and apply the lastest migration ($ alembic upgrade head)
 
 ## Code guidelines
 
@@ -14,6 +15,7 @@ C++ guidelines can be viewed [here](/docs/cppGuidelines.md).
 - Write tests for new features or bugfixes
 - Follow the existing code style
 - Document public functions or modules
+- (Create new database migration if necessary (alembic revision --autogenerate -m "YourChanges"))
 
 ## Commit Messages
 Use clear, concise commit messages. Preferred format:
