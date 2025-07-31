@@ -2,8 +2,10 @@ alembic
 python-dotenv
 psycopg2
 fastapi
+bcrypt
 uvicorn
 sqlalchemy
 passlib
 pyjwt
 pydantic
+pydantic[email]
