@@ -4,9 +4,8 @@ from sqlalchemy.orm import Session
 import jwt
 
 from database import get_db
-from ...models.models import User
+from models.models import User
 from auth.auth import SECRET_KEY, ALGORITHM
-
 security = HTTPBearer()
 
 

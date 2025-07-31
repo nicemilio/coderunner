@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
-from ..models.models import Base
+from models.models import Base
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost/dbname")
 

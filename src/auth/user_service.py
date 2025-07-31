@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
-from ..models.models import User 
+from models.models import User 
 from auth.auth import hash_password, verify_password
-
 
 def get_user_by_username(db: Session, username: str):
     return db.query(User).filter(User.username == username).first()
