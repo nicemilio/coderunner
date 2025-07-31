@@ -18,7 +18,7 @@ sudo apt install -y postgresql build-essential libpq-dev python3-dev
 python3 -m venv CodeRunnerVenv
 
 # Activate the virtual environment
-source .venv/bin/activate # On Linux/macOS
+source CodeRunnerVenv/bin/activate # On Linux/macOS
 
 # Install Python dependencies
 pip install -r requirements.txt
