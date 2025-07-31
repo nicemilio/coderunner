@@ -1,3 +1,9 @@
 alembic
 python-dotenv
 psycopg2
+fastapi
+uvicorn
+sqlalchemy
+passlib
+pyjwt
+pydantic
