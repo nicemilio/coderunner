@@ -1,3 +1,10 @@
+"""!
+@file router.py
+@brief Authentication API routes for user registration, login and profile access
+@details Provides FastAPI router endpoints for user authentication including registration,
+         login, and accessing current user profile information.
+"""
+
 from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 
@@ -41,6 +48,14 @@ async def register(user_data: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 async def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
+    """!
+    @brief Authenticate user and generate access token
+    @details Validates user credentials and returns an access token upon successful authentication
+    @param user_credentials UserLogin: Login credentials containing username and password
+    @param db Session: SQLAlchemy database session
+    @return Token: Access token, token type, and user information
+    @throws HTTPException: 401 if credentials are incorrect
+    """
     user = authenticate_user(db, user_credentials.username, user_credentials.password)
     if not user:
         raise HTTPException(
@@ -59,4 +74,11 @@ async def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: User = Depends(get_current_user)):
+    """!
+    @brief Get current authenticated user information
+    @details Returns the profile information of the currently authenticated user
+    @param current_user User: The authenticated user from JWT token (injected by dependency)
+    @return UserResponse: Current user's profile information
+    @note Requires valid JWT token in Authorization header
+    """
     return UserResponse.model_validate(current_user)
