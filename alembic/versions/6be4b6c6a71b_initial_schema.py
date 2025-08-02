@@ -20,23 +20,7 @@ depends_on: Union[str, Sequence[str], None] = None
 # --- UPGRADE -----------------------------------------------------------------
 
 def upgrade() -> None:
-    # --- ENUMS manuell erstellen, falls sie noch nicht existieren ---
-    op.execute("""
-        DO $$
-        BEGIN
-            IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'difficultyenum') THEN
-                CREATE TYPE difficultyenum AS ENUM ('easy', 'medium', 'hard');
-            END IF;
-        END$$;
-    """)
-    op.execute("""
-        DO $$
-        BEGIN
-            IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'statusenum') THEN
-                CREATE TYPE statusenum AS ENUM ('pending', 'accepted', 'wrong_answer', 'error');
-            END IF;
-        END$$;
-    """)
+   
 
     # --- Tabellen erstellen ---
     op.create_table(
